@@ -1,0 +1,21 @@
+# secrets 
+.streamlit/secrets.toml
+
+# notes
+notes/
+concatFiles.py
+input.txt
+output.txt
+
+# Python 
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# editors and system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
