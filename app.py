@@ -5,6 +5,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import snowflake.connector
 import streamlit as st
+from streamlit_javascript import st_javascript
 
 EXCLUDED_IPS = [
     '127.0.0.1',
@@ -313,13 +314,15 @@ def log_ip_to_bronze(ip_to_log: str, db_conn):
         cur.close()
 
 
-user_ip = st.context.headers.get("X-Forwarded-For")
+user_ip = st_javascript("fetch('https://api.ipify.org?format=json').then(r => r.json()).then(d => d.ip)")
+if user_ip == "None":
+    user_ip = "Unknown"
 
 st.markdown(PAGE_STYLE, unsafe_allow_html=True)
 
 conn = get_connection()
 
-if user_ip  and  user_ip not in EXCLUDED_IPS:
+if user_ip not in EXCLUDED_IPS:
     log_ip_to_bronze(user_ip, conn)
 
 df_teams = run_query(f"""
