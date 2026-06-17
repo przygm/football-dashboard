@@ -314,16 +314,29 @@ def log_ip_to_bronze(ip_to_log: str, db_conn):
         cur.close()
 
 
-user_ip = st_javascript("fetch('https://api.ipify.org?format=json').then(r => r.json()).then(d => d.ip)")
-if user_ip == "None":
-    user_ip = "Unknown"
+def get_and_validate_client_ip(excluded_ips):  
+    raw_ip = st_javascript("fetch('https://api.ipify.org?format=json').then(r => r.json()).then(d => d.ip)")
+    
+    if not raw_ip or str(raw_ip).strip() in ["0", "None", "Unknown", "false", "undefined", ""]:
+        st.caption("Initializing secure connection... please wait.")
+        st.stop()
+        
+    cleaned_ip = str(raw_ip).strip()
+    
+    if cleaned_ip in excluded_ips: # małe litery, bo sprawdzamy argument funkcji
+        return None
+        
+    return cleaned_ip
+
+user_ip = get_and_validate_client_ip(EXCLUDED_IPS)
 
 st.markdown(PAGE_STYLE, unsafe_allow_html=True)
 
 conn = get_connection()
 
-if user_ip not in EXCLUDED_IPS:
+if user_ip:
     log_ip_to_bronze(user_ip, conn)
+
 
 df_teams = run_query(f"""
     SELECT DISTINCT TEAM
