@@ -297,28 +297,6 @@ def run_query(sql: str) -> pd.DataFrame:
         cur.close()
 
 
-def get_public_ip() -> str:
-    try:
-        return (
-            urllib.request.urlopen('https://api.ipify.org', timeout=3)
-            .read()
-            .decode('utf8')
-            .strip()
-        )
-    except Exception:
-        pass  
-
-    try:
-        return (
-            urllib.request.urlopen('https://icanhazip.com', timeout=3)
-            .read()
-            .decode('utf8')
-            .strip()
-        )
-    except Exception:
-        return 'ip_error'
-
-
 def log_ip_to_bronze(ip_to_log: str, db_conn):
     cur = db_conn.cursor()  
     try:
@@ -335,13 +313,13 @@ def log_ip_to_bronze(ip_to_log: str, db_conn):
         cur.close()
 
 
-user_ip = get_public_ip()
+user_ip = st.context.headers.get("X-Forwarded-For")
 
 st.markdown(PAGE_STYLE, unsafe_allow_html=True)
 
 conn = get_connection()
 
-if user_ip != 'ip_error'  and  user_ip not in EXCLUDED_IPS:
+if user_ip  and  user_ip not in EXCLUDED_IPS:
     log_ip_to_bronze(user_ip, conn)
 
 df_teams = run_query(f"""
