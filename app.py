@@ -286,10 +286,20 @@ def get_connection():
         schema    = DB_SCHEMA,
     )
 
+def get_valid_cursor():
+    global conn
+    try:
+        return conn.cursor()
+    except snowflake.connector.errors.ProgrammingError as e:
+        if "token has expired" in str(e).lower():
+            get_connection.clear()
+            conn = get_connection()
+            return conn.cursor()
+        raise e
 
 @st.cache_data(ttl=3600)
 def run_query(sql: str) -> pd.DataFrame:
-    cur = conn.cursor()
+    cur = get_valid_cursor()
     try:
         cur.execute(sql)
         columns = [col[0] for col in cur.description]
@@ -299,7 +309,7 @@ def run_query(sql: str) -> pd.DataFrame:
 
 
 def log_ip_to_bronze(ip_to_log: str, db_conn):
-    cur = db_conn.cursor()  
+    cur = get_valid_cursor() 
     try:
         cur.execute(
             """
