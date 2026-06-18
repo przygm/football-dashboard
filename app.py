@@ -286,42 +286,36 @@ def get_connection():
         schema    = DB_SCHEMA,
     )
 
-def get_valid_cursor():
-    global conn
-    try:
-        return conn.cursor()
-    except snowflake.connector.errors.ProgrammingError as e:
-        if "token has expired" in str(e).lower():
-            get_connection.clear()
-            conn = get_connection()
-            return conn.cursor()
-        raise e
+def safe_execute(sql: str, params: tuple = None): 
+    conn = get_connection()
+    with conn.cursor() as cur:
+        try:
+            cur.execute(sql, params) if params else cur.execute(sql)
+            return cur.fetchall(), [col[0] for col in cur.description] if cur.description else (None, None)
+        except (snowflake.connector.errors.ProgrammingError, snowflake.connector.errors.OperationalError) as e:
+            if "token has expired" in str(e).lower() or "not connected" in str(e).lower():
+                get_connection.clear()  
+                new_conn = get_connection()  
+                with new_conn.cursor() as new_cur:
+                    new_cur.execute(sql, params) if params else new_cur.execute(sql)
+                    return new_cur.fetchall(), [col[0] for col in new_cur.description] if new_cur.description else (None, None)
+            raise e
 
 @st.cache_data(ttl=3600)
 def run_query(sql: str) -> pd.DataFrame:
-    cur = get_valid_cursor()
-    try:
-        cur.execute(sql)
-        columns = [col[0] for col in cur.description]
-        return pd.DataFrame(cur.fetchall(), columns=columns)
-    finally:
-        cur.close()
+    data, columns = safe_execute(sql)
+    return pd.DataFrame(data, columns=columns)
 
 
-def log_ip_to_bronze(ip_to_log: str, db_conn):
-    cur = get_valid_cursor() 
+def log_ip_to_bronze(ip_to_log: str, db_conn=None):
+    sql = """
+        INSERT INTO FOOTBALL_DB.BRONZE.USER_LOGINS (IP_ADDRESS, LOGIN_TIMESTAMP) 
+        VALUES (%s, CONVERT_TIMEZONE('UTC', CURRENT_TIMESTAMP())::TIMESTAMP_NTZ)
+    """
     try:
-        cur.execute(
-            """
-            INSERT INTO FOOTBALL_DB.BRONZE.USER_LOGINS (IP_ADDRESS, LOGIN_TIMESTAMP) 
-            VALUES (%s, CONVERT_TIMEZONE('UTC', CURRENT_TIMESTAMP())::TIMESTAMP_NTZ)
-            """,
-            (ip_to_log,)
-        )
+        safe_execute(sql, (ip_to_log,))
     except Exception as e: 
         print(f"Error when insert to database: {e}")
-    finally:
-        cur.close()
 
 
 def get_and_validate_client_ip(excluded_ips):  
