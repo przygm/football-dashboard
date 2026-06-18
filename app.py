@@ -324,19 +324,26 @@ def log_ip_to_bronze(ip_to_log: str, db_conn):
         cur.close()
 
 
-def get_and_validate_client_ip(excluded_ips):  
+def get_and_validate_client_ip(excluded_ips):
     raw_ip = st_javascript("fetch('https://api.ipify.org?format=json').then(r => r.json()).then(d => d.ip)")
     
-    if not raw_ip or str(raw_ip).strip() in ["0", "None", "Unknown", "false", "undefined", ""]:
+    cleaned_ip = str(raw_ip).strip() if raw_ip else ""
+    
+    is_invalid = (
+        not cleaned_ip
+        or cleaned_ip in ["0", "None", "Unknown", "false", "undefined"]
+        or not cleaned_ip[0].isdigit()  
+    )
+    
+    if is_invalid:
         st.caption("Initializing secure connection... please wait.")
         st.stop()
-        
-    cleaned_ip = str(raw_ip).strip()
     
-    if cleaned_ip in excluded_ips: # małe litery, bo sprawdzamy argument funkcji
+    if cleaned_ip in excluded_ips:
         return None
-        
+    
     return cleaned_ip
+
 
 user_ip = get_and_validate_client_ip(EXCLUDED_IPS)
 
