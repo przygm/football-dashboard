@@ -1,0 +1,2024 @@
+[     UTC     ] Logs for football-dashboard-analytics.streamlit.app/
+
+────────────────────────────────────────────────────────────────────────────────────────
+
+[10:56:17] 🚀 Starting up repository: 'football-dashboard', branch: 'main', main module: 'app.py'
+
+[10:56:17] 🐙 Cloning repository...
+
+[10:56:18] 🐙 Cloning into '/mount/src/football-dashboard'...
+
+[10:56:18] 🐙 Cloned repository!
+
+[10:56:18] 🐙 Pulling code changes from Github...
+
+[10:56:18] 📦 Processing dependencies...
+
+
+──────────────────────────────────────── uv ───────────────────────────────────────────
+
+
+Using uv pip install.
+
+Using Python 3.12.13 environment at /home/adminuser/venv
+
+Resolved 54 packages in 574ms
+
+Prepared 54 packages in 2.00s
+
+Installed 54 packages in 215ms
+
+ + altair==6.2.1
+
+ + asn1crypto==1.5.1
+
+ + attrs==26.1.0
+
+ + blinker==1.9.0
+
+ + boto3==1.43.32
+
+ + botocore==1.43.32
+
+ + cachetools==7.1.4
+
+ + certifi==[2026-06-18 10:56:21.951745] 2026.6.17
+
+ + cffi==2.0.0
+
+ + charset-normalizer==3.4.7
+
+ + click==8.4.1
+
+ + cryptography==49.0.0
+
+ + filelock==3.29.4
+
+ + [2026-06-18 10:56:21.951998] gitdb==4.0.12
+
+ + gitpython==3.1.50
+
+ + idna==3.18
+
+ + jinja2==3.1.6
+
+ + jmespath==1.1.0
+
+ + jsonschema==4.26.0
+
+ + jsonschema-specifications==2025.9.1[2026-06-18 10:56:21.952167] 
+
+ + markupsafe==3.0.3
+
+ + narwhals==2.22.1
+
+ + numpy==2.4.6
+
+ + packaging==26.2
+
+ + pandas==2.3.1
+
+ + pillow==[2026-06-18 10:56:21.952337] 12.2.0
+
+ + platformdirs==4.10.0
+
+ + plotly==6.8.0
+
+ + protobuf==7.35.1
+
+ + pyarrow==24.0.0
+
+ + pycparser==3.0
+
+ + pydeck==0.9.2[2026-06-18 10:56:21.952508] 
+
+ + pyjwt==2.13.0
+
+ + pyopenssl==26.3.0
+
+ + python-dateutil==2.9.0.post0
+
+ + pytz==2026.2
+
+ + referencing==0.37.0
+
+ + [2026-06-18 10:56:21.952682] requests==2.34.2
+
+ + rpds-py==2026.5.1
+
+ + s3transfer==0.19.0
+
+ + six==1.17.0
+
+ + smmap==5.0.3
+
+ +[2026-06-18 10:56:21.952961]  snowflake-connector-python==4.4.0
+
+ + sortedcontainers==2.4.0
+
+ + streamlit==1.56.0
+
+ + streamlit-javascript==0.1.5
+
+ + tenacity==9.1.4
+
+ + toml[2026-06-18 10:56:21.953132] ==0.10.2
+
+ + tomlkit==0.15.0
+
+ + tornado==6.5.7
+
+ + typing-extensions==4.15.0
+
+ + tzdata==2026.2[2026-06-18 10:56:21.953274] 
+
+ + urllib3==2.7.0
+
+ + watchdog==6.0.0
+
+Checking if Streamlit is installed
+
+Found Streamlit version 1.56.0 in the environment
+
+Installing rich for an improved exception logging
+
+Using uv pip install.
+
+Using Python 3.12.13 environment at /home/adminuser/venv
+
+Resolved 4 packages in 116ms
+
+Prepared 4 packages in 95ms
+
+Installed 4 packages in 11ms
+
+ + markdown-it-py==4.2.0
+
+ + mdurl==[2026-06-18 10:56:23.844985] 0.1.2
+
+ + pygments==2.20.0
+
+ + rich==15.0.0
+
+
+────────────────────────────────────────────────────────────────────────────────────────
+
+
+[10:56:24] 🐍 Python dependencies were installed from /mount/src/football-dashboard/requirements.txt using uv.
+
+Check if streamlit is installed
+
+Streamlit is already installed
+
+[10:56:25] 📦 Processed dependencies!
+
+
+
+
+Error when insert to database: 390114 (08001): Authentication token has expired.  The user must authenticate again.
+
+────────────────────── Traceback (most recent call last) ───────────────────────
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:779 in _post_request                                                     
+
+                                                                                
+
+     776 │   │   │   and self._connection._authenticator != PAT_WITH_EXTERNAL_  
+
+     777 │   │   ):                                                             
+
+     778 │   │   │   try:                                                       
+
+  ❱  779 │   │   │   │   ret = self._renew_session()                            
+
+     780 │   │   │   except ReauthenticationRequest as ex:                      
+
+     781 │   │   │   │   if self._connection._authenticator != EXTERNAL_BROWSE  
+
+     782 │   │   │   │   │   raise ex.cause                                     
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:536 in _renew_session                                                    
+
+                                                                                
+
+     533 │                                                                      
+
+     534 │   def _renew_session(self):                                          
+
+     535 │   │   """Renew a session and master token."""                        
+
+  ❱  536 │   │   return self._token_request(REQUEST_TYPE_RENEW)                 
+
+     537 │                                                                      
+
+     538 │   def _token_request(self, request_type):                            
+
+     539 │   │   logger.debug(                                                  
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:591 in _token_request                                                    
+
+                                                                                
+
+     588 │   │   │   │   MASTER_TOKEN_INVALD_GS_CODE,                           
+
+     589 │   │   │   │   BAD_REQUEST_GS_CODE,                                   
+
+     590 │   │   │   ):                                                         
+
+  ❱  591 │   │   │   │   raise ReauthenticationRequest(                         
+
+     592 │   │   │   │   │   ProgrammingError(                                  
+
+     593 │   │   │   │   │   │   msg=err,                                       
+
+     594 │   │   │   │   │   │   errno=int(errno),                              
+
+────────────────────────────────────────────────────────────────────────────────
+
+ReauthenticationRequest: 390114 (08001): Authentication token has expired.  The 
+
+user must authenticate again.
+
+
+During handling of the above exception, another exception occurred:
+
+
+────────────────────── Traceback (most recent call last) ───────────────────────
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/scriptru  
+
+  nner/exec_code.py:129 in exec_func_with_error_handling                        
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/scriptru  
+
+  nner/script_runner.py:689 in code_to_exec                                     
+
+                                                                                
+
+  /mount/src/football-dashboard/app.py:341 in <module>                          
+
+                                                                                
+
+    338 │   log_ip_to_bronze(user_ip, conn)                                     
+
+    339                                                                         
+
+    340                                                                         
+
+  ❱ 341 df_teams = run_query(f"""                                               
+
+    342 │   SELECT DISTINCT TEAM                                                
+
+    343 │   FROM FOOTBALL_DB.{DB_SCHEMA}.FCT_TEAM_ROLLING_FORM_LAST_5           
+
+    344 │   ORDER BY TEAM                                                       
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:281 in __call__                                                
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:326 in _get_or_create_cached_value                             
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:385 in _handle_cache_miss                                      
+
+                                                                                
+
+  /mount/src/football-dashboard/app.py:294 in run_query                         
+
+                                                                                
+
+    291 def run_query(sql: str) -> pd.DataFrame:                                
+
+    292 │   cur = conn.cursor()                                                 
+
+    293 │   try:                                                                
+
+  ❱ 294 │   │   cur.execute(sql)                                                
+
+    295 │   │   columns = [col[0] for col in cur.description]                   
+
+    296 │   │   return pd.DataFrame(cur.fetchall(), columns=columns)            
+
+    297 │   finally:                                                            
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/cursor  
+
+  .py:1033 in execute                                                           
+
+                                                                                
+
+    1030 │   │   │   )                                                          
+
+    1031 │   │   │   query = query1                                             
+
+    1032 │   │                                                                  
+
+  ❱ 1033 │   │   ret = self._execute_helper(query, **kwargs)                    
+
+    1034 │   │   self._sfqid = (                                                
+
+    1035 │   │   │   ret["data"]["queryId"]                                     
+
+    1036 │   │   │   if "data" in ret and "queryId" in ret["data"]              
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/cursor  
+
+  .py:739 in _execute_helper                                                    
+
+                                                                                
+
+     736 │   │   │   )                                                          
+
+     737 │   │   ret: dict[str, Any] = {"data": {}}                             
+
+     738 │   │   try:                                                           
+
+  ❱  739 │   │   │   ret = self._connection.cmd_query(                          
+
+     740 │   │   │   │   query,                                                 
+
+     741 │   │   │   │   self._sequence_counter,                                
+
+     742 │   │   │   │   self._request_id,                                      
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/connec  
+
+  tion.py:1923 in cmd_query                                                     
+
+                                                                                
+
+    1920 │   │                                                                  
+
+    1921 │   │   url_parameters = {REQUEST_ID: request_id}                      
+
+    1922 │   │                                                                  
+
+  ❱ 1923 │   │   ret = self.rest.request(                                       
+
+    1924 │   │   │   "/queries/v1/query-request?" + urlencode(url_parameters),  
+
+    1925 │   │   │   data,                                                      
+
+    1926 │   │   │   client=client,                                             
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:487 in request                                                           
+
+                                                                                
+
+     484 │   │   if self._connection.service_name:                              
+
+     485 │   │   │   headers[HTTP_HEADER_SERVICE_NAME] = self._connection.serv  
+
+     486 │   │   if method == "post":                                           
+
+  ❱  487 │   │   │   return self._post_request(                                 
+
+     488 │   │   │   │   url,                                                   
+
+     489 │   │   │   │   headers,                                               
+
+     490 │   │   │   │   json.dumps(body, cls=SnowflakeRestfulJsonEncoder),     
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:782 in _post_request                                                     
+
+                                                                                
+
+     779 │   │   │   │   ret = self._renew_session()                            
+
+     780 │   │   │   except ReauthenticationRequest as ex:                      
+
+     781 │   │   │   │   if self._connection._authenticator != EXTERNAL_BROWSE  
+
+  ❱  782 │   │   │   │   │   raise ex.cause                                     
+
+     783 │   │   │   │   ret = self._connection._reauthenticate()               
+
+     784 │   │   │   logger.debug(                                              
+
+     785 │   │   │   │   "ret[code] = {code} after renew_session".format(       
+
+────────────────────────────────────────────────────────────────────────────────
+
+ProgrammingError: 390114 (08001): Authentication token has expired.  The user 
+
+must authenticate again.
+
+Error when insert to database: 390114 (08001): Authentication token has expired.  The user must authenticate again.
+
+────────────────────── Traceback (most recent call last) ───────────────────────
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:779 in _post_request                                                     
+
+                                                                                
+
+     776 │   │   │   and self._connection._authenticator != PAT_WITH_EXTERNAL_  
+
+     777 │   │   ):                                                             
+
+     778 │   │   │   try:                                                       
+
+  ❱  779 │   │   │   │   ret = self._renew_session()                            
+
+     780 │   │   │   except ReauthenticationRequest as ex:                      
+
+     781 │   │   │   │   if self._connection._authenticator != EXTERNAL_BROWSE  
+
+     782 │   │   │   │   │   raise ex.cause                                     
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:536 in _renew_session                                                    
+
+                                                                                
+
+     533 │                                                                      
+
+     534 │   def _renew_session(self):                                          
+
+     535 │   │   """Renew a session and master token."""                        
+
+  ❱  536 │   │   return self._token_request(REQUEST_TYPE_RENEW)                 
+
+     537 │                                                                      
+
+     538 │   def _token_request(self, request_type):                            
+
+     539 │   │   logger.debug(                                                  
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:591 in _token_request                                                    
+
+                                                                                
+
+     588 │   │   │   │   MASTER_TOKEN_INVALD_GS_CODE,                           
+
+     589 │   │   │   │   BAD_REQUEST_GS_CODE,                                   
+
+     590 │   │   │   ):                                                         
+
+  ❱  591 │   │   │   │   raise ReauthenticationRequest(                         
+
+     592 │   │   │   │   │   ProgrammingError(                                  
+
+     593 │   │   │   │   │   │   msg=err,                                       
+
+     594 │   │   │   │   │   │   errno=int(errno),                              
+
+────────────────────────────────────────────────────────────────────────────────
+
+ReauthenticationRequest: 390114 (08001): Authentication token has expired.  The 
+
+user must authenticate again.
+
+
+During handling of the above exception, another exception occurred:
+
+
+────────────────────── Traceback (most recent call last) ───────────────────────
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/scriptru  
+
+  nner/exec_code.py:129 in exec_func_with_error_handling                        
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/scriptru  
+
+  nner/script_runner.py:689 in code_to_exec                                     
+
+                                                                                
+
+  /mount/src/football-dashboard/app.py:341 in <module>                          
+
+                                                                                
+
+    338 │   log_ip_to_bronze(user_ip, conn)                                     
+
+    339                                                                         
+
+    340                                                                         
+
+  ❱ 341 df_teams = run_query(f"""                                               
+
+    342 │   SELECT DISTINCT TEAM                                                
+
+    343 │   FROM FOOTBALL_DB.{DB_SCHEMA}.FCT_TEAM_ROLLING_FORM_LAST_5           
+
+    344 │   ORDER BY TEAM                                                       
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:281 in __call__                                                
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:326 in _get_or_create_cached_value                             
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:385 in _handle_cache_miss                                      
+
+                                                                                
+
+  /mount/src/football-dashboard/app.py:294 in run_query                         
+
+                                                                                
+
+    291 def run_query(sql: str) -> pd.DataFrame:                                
+
+    292 │   cur = conn.cursor()                                                 
+
+    293 │   try:                                                                
+
+  ❱ 294 │   │   cur.execute(sql)                                                
+
+    295 │   │   columns = [col[0] for col in cur.description]                   
+
+    296 │   │   return pd.DataFrame(cur.fetchall(), columns=columns)            
+
+    297 │   finally:                                                            
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/cursor  
+
+  .py:1033 in execute                                                           
+
+                                                                                
+
+    1030 │   │   │   )                                                          
+
+    1031 │   │   │   query = query1                                             
+
+    1032 │   │                                                                  
+
+  ❱ 1033 │   │   ret = self._execute_helper(query, **kwargs)                    
+
+    1034 │   │   self._sfqid = (                                                
+
+    1035 │   │   │   ret["data"]["queryId"]                                     
+
+    1036 │   │   │   if "data" in ret and "queryId" in ret["data"]              
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/cursor  
+
+  .py:739 in _execute_helper                                                    
+
+                                                                                
+
+     736 │   │   │   )                                                          
+
+     737 │   │   ret: dict[str, Any] = {"data": {}}                             
+
+     738 │   │   try:                                                           
+
+  ❱  739 │   │   │   ret = self._connection.cmd_query(                          
+
+     740 │   │   │   │   query,                                                 
+
+     741 │   │   │   │   self._sequence_counter,                                
+
+     742 │   │   │   │   self._request_id,                                      
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/connec  
+
+  tion.py:1923 in cmd_query                                                     
+
+                                                                                
+
+    1920 │   │                                                                  
+
+    1921 │   │   url_parameters = {REQUEST_ID: request_id}                      
+
+    1922 │   │                                                                  
+
+  ❱ 1923 │   │   ret = self.rest.request(                                       
+
+    1924 │   │   │   "/queries/v1/query-request?" + urlencode(url_parameters),  
+
+    1925 │   │   │   data,                                                      
+
+    1926 │   │   │   client=client,                                             
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:487 in request                                                           
+
+                                                                                
+
+     484 │   │   if self._connection.service_name:                              
+
+     485 │   │   │   headers[HTTP_HEADER_SERVICE_NAME] = self._connection.serv  
+
+     486 │   │   if method == "post":                                           
+
+  ❱  487 │   │   │   return self._post_request(                                 
+
+     488 │   │   │   │   url,                                                   
+
+     489 │   │   │   │   headers,                                               
+
+     490 │   │   │   │   json.dumps(body, cls=SnowflakeRestfulJsonEncoder),     
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:782 in _post_request                                                     
+
+                                                                                
+
+     779 │   │   │   │   ret = self._renew_session()                            
+
+     780 │   │   │   except ReauthenticationRequest as ex:                      
+
+     781 │   │   │   │   if self._connection._authenticator != EXTERNAL_BROWSE  
+
+  ❱  782 │   │   │   │   │   raise ex.cause                                     
+
+     783 │   │   │   │   ret = self._connection._reauthenticate()               
+
+     784 │   │   │   logger.debug(                                              
+
+     785 │   │   │   │   "ret[code] = {code} after renew_session".format(       
+
+────────────────────────────────────────────────────────────────────────────────
+
+ProgrammingError: 390114 (08001): Authentication token has expired.  The user 
+
+must authenticate again.
+
+Error when insert to database: 390114 (08001): Authentication token has expired.  The user must authenticate again.
+
+────────────────────── Traceback (most recent call last) ───────────────────────
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:779 in _post_request                                                     
+
+                                                                                
+
+     776 │   │   │   and self._connection._authenticator != PAT_WITH_EXTERNAL_  
+
+     777 │   │   ):                                                             
+
+     778 │   │   │   try:                                                       
+
+  ❱  779 │   │   │   │   ret = self._renew_session()                            
+
+     780 │   │   │   except ReauthenticationRequest as ex:                      
+
+     781 │   │   │   │   if self._connection._authenticator != EXTERNAL_BROWSE  
+
+     782 │   │   │   │   │   raise ex.cause                                     
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:536 in _renew_session                                                    
+
+                                                                                
+
+     533 │                                                                      
+
+     534 │   def _renew_session(self):                                          
+
+     535 │   │   """Renew a session and master token."""                        
+
+  ❱  536 │   │   return self._token_request(REQUEST_TYPE_RENEW)                 
+
+     537 │                                                                      
+
+     538 │   def _token_request(self, request_type):                            
+
+     539 │   │   logger.debug(                                                  
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:591 in _token_request                                                    
+
+                                                                                
+
+     588 │   │   │   │   MASTER_TOKEN_INVALD_GS_CODE,                           
+
+     589 │   │   │   │   BAD_REQUEST_GS_CODE,                                   
+
+     590 │   │   │   ):                                                         
+
+  ❱  591 │   │   │   │   raise ReauthenticationRequest(                         
+
+     592 │   │   │   │   │   ProgrammingError(                                  
+
+     593 │   │   │   │   │   │   msg=err,                                       
+
+     594 │   │   │   │   │   │   errno=int(errno),                              
+
+────────────────────────────────────────────────────────────────────────────────
+
+ReauthenticationRequest: 390114 (08001): Authentication token has expired.  The 
+
+user must authenticate again.
+
+
+During handling of the above exception, another exception occurred:
+
+
+────────────────────── Traceback (most recent call last) ───────────────────────
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/scriptru  
+
+  nner/exec_code.py:129 in exec_func_with_error_handling                        
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/scriptru  
+
+  nner/script_runner.py:689 in code_to_exec                                     
+
+                                                                                
+
+  /mount/src/football-dashboard/app.py:341 in <module>                          
+
+                                                                                
+
+    338 │   log_ip_to_bronze(user_ip, conn)                                     
+
+    339                                                                         
+
+    340                                                                         
+
+  ❱ 341 df_teams = run_query(f"""                                               
+
+    342 │   SELECT DISTINCT TEAM                                                
+
+    343 │   FROM FOOTBALL_DB.{DB_SCHEMA}.FCT_TEAM_ROLLING_FORM_LAST_5           
+
+    344 │   ORDER BY TEAM                                                       
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:281 in __call__                                                
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:326 in _get_or_create_cached_value                             
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:385 in _handle_cache_miss                                      
+
+                                                                                
+
+  /mount/src/football-dashboard/app.py:294 in run_query                         
+
+                                                                                
+
+    291 def run_query(sql: str) -> pd.DataFrame:                                
+
+    292 │   cur = conn.cursor()                                                 
+
+    293 │   try:                                                                
+
+  ❱ 294 │   │   cur.execute(sql)                                                
+
+    295 │   │   columns = [col[0] for col in cur.description]                   
+
+    296 │   │   return pd.DataFrame(cur.fetchall(), columns=columns)            
+
+    297 │   finally:                                                            
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/cursor  
+
+  .py:1033 in execute                                                           
+
+                                                                                
+
+    1030 │   │   │   )                                                          
+
+    1031 │   │   │   query = query1                                             
+
+    1032 │   │                                                                  
+
+  ❱ 1033 │   │   ret = self._execute_helper(query, **kwargs)                    
+
+    1034 │   │   self._sfqid = (                                                
+
+    1035 │   │   │   ret["data"]["queryId"]                                     
+
+    1036 │   │   │   if "data" in ret and "queryId" in ret["data"]              
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/cursor  
+
+  .py:739 in _execute_helper                                                    
+
+                                                                                
+
+     736 │   │   │   )                                                          
+
+     737 │   │   ret: dict[str, Any] = {"data": {}}                             
+
+     738 │   │   try:                                                           
+
+  ❱  739 │   │   │   ret = self._connection.cmd_query(                          
+
+     740 │   │   │   │   query,                                                 
+
+     741 │   │   │   │   self._sequence_counter,                                
+
+     742 │   │   │   │   self._request_id,                                      
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/connec  
+
+  tion.py:1923 in cmd_query                                                     
+
+                                                                                
+
+    1920 │   │                                                                  
+
+    1921 │   │   url_parameters = {REQUEST_ID: request_id}                      
+
+    1922 │   │                                                                  
+
+  ❱ 1923 │   │   ret = self.rest.request(                                       
+
+    1924 │   │   │   "/queries/v1/query-request?" + urlencode(url_parameters),  
+
+    1925 │   │   │   data,                                                      
+
+    1926 │   │   │   client=client,                                             
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:487 in request                                                           
+
+                                                                                
+
+     484 │   │   if self._connection.service_name:                              
+
+     485 │   │   │   headers[HTTP_HEADER_SERVICE_NAME] = self._connection.serv  
+
+     486 │   │   if method == "post":                                           
+
+  ❱  487 │   │   │   return self._post_request(                                 
+
+     488 │   │   │   │   url,                                                   
+
+     489 │   │   │   │   headers,                                               
+
+     490 │   │   │   │   json.dumps(body, cls=SnowflakeRestfulJsonEncoder),     
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:782 in _post_request                                                     
+
+                                                                                
+
+     779 │   │   │   │   ret = self._renew_session()                            
+
+     780 │   │   │   except ReauthenticationRequest as ex:                      
+
+     781 │   │   │   │   if self._connection._authenticator != EXTERNAL_BROWSE  
+
+  ❱  782 │   │   │   │   │   raise ex.cause                                     
+
+     783 │   │   │   │   ret = self._connection._reauthenticate()               
+
+     784 │   │   │   logger.debug(                                              
+
+     785 │   │   │   │   "ret[code] = {code} after renew_session".format(       
+
+────────────────────────────────────────────────────────────────────────────────
+
+ProgrammingError: 390114 (08001): Authentication token has expired.  The user 
+
+must authenticate again.
+
+Error when insert to database: 390114 (08001): Authentication token has expired.  The user must authenticate again.
+
+────────────────────── Traceback (most recent call last) ───────────────────────
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:779 in _post_request                                                     
+
+                                                                                
+
+     776 │   │   │   and self._connection._authenticator != PAT_WITH_EXTERNAL_  
+
+     777 │   │   ):                                                             
+
+     778 │   │   │   try:                                                       
+
+  ❱  779 │   │   │   │   ret = self._renew_session()                            
+
+     780 │   │   │   except ReauthenticationRequest as ex:                      
+
+     781 │   │   │   │   if self._connection._authenticator != EXTERNAL_BROWSE  
+
+     782 │   │   │   │   │   raise ex.cause                                     
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:536 in _renew_session                                                    
+
+                                                                                
+
+     533 │                                                                      
+
+     534 │   def _renew_session(self):                                          
+
+     535 │   │   """Renew a session and master token."""                        
+
+  ❱  536 │   │   return self._token_request(REQUEST_TYPE_RENEW)                 
+
+     537 │                                                                      
+
+     538 │   def _token_request(self, request_type):                            
+
+     539 │   │   logger.debug(                                                  
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:591 in _token_request                                                    
+
+                                                                                
+
+     588 │   │   │   │   MASTER_TOKEN_INVALD_GS_CODE,                           
+
+     589 │   │   │   │   BAD_REQUEST_GS_CODE,                                   
+
+     590 │   │   │   ):                                                         
+
+  ❱  591 │   │   │   │   raise ReauthenticationRequest(                         
+
+     592 │   │   │   │   │   ProgrammingError(                                  
+
+     593 │   │   │   │   │   │   msg=err,                                       
+
+     594 │   │   │   │   │   │   errno=int(errno),                              
+
+────────────────────────────────────────────────────────────────────────────────
+
+ReauthenticationRequest: 390114 (08001): Authentication token has expired.  The 
+
+user must authenticate again.
+
+
+During handling of the above exception, another exception occurred:
+
+
+────────────────────── Traceback (most recent call last) ───────────────────────
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/scriptru  
+
+  nner/exec_code.py:129 in exec_func_with_error_handling                        
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/scriptru  
+
+  nner/script_runner.py:689 in code_to_exec                                     
+
+                                                                                
+
+  /mount/src/football-dashboard/app.py:341 in <module>                          
+
+                                                                                
+
+    338 │   log_ip_to_bronze(user_ip, conn)                                     
+
+    339                                                                         
+
+    340                                                                         
+
+  ❱ 341 df_teams = run_query(f"""                                               
+
+    342 │   SELECT DISTINCT TEAM                                                
+
+    343 │   FROM FOOTBALL_DB.{DB_SCHEMA}.FCT_TEAM_ROLLING_FORM_LAST_5           
+
+    344 │   ORDER BY TEAM                                                       
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:281 in __call__                                                
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:326 in _get_or_create_cached_value                             
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:385 in _handle_cache_miss                                      
+
+                                                                                
+
+  /mount/src/football-dashboard/app.py:294 in run_query                         
+
+                                                                                
+
+    291 def run_query(sql: str) -> pd.DataFrame:                                
+
+    292 │   cur = conn.cursor()                                                 
+
+    293 │   try:                                                                
+
+  ❱ 294 │   │   cur.execute(sql)                                                
+
+    295 │   │   columns = [col[0] for col in cur.description]                   
+
+    296 │   │   return pd.DataFrame(cur.fetchall(), columns=columns)            
+
+    297 │   finally:                                                            
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/cursor  
+
+  .py:1033 in execute                                                           
+
+                                                                                
+
+    1030 │   │   │   )                                                          
+
+    1031 │   │   │   query = query1                                             
+
+    1032 │   │                                                                  
+
+  ❱ 1033 │   │   ret = self._execute_helper(query, **kwargs)                    
+
+    1034 │   │   self._sfqid = (                                                
+
+    1035 │   │   │   ret["data"]["queryId"]                                     
+
+    1036 │   │   │   if "data" in ret and "queryId" in ret["data"]              
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/cursor  
+
+  .py:739 in _execute_helper                                                    
+
+                                                                                
+
+     736 │   │   │   )                                                          
+
+     737 │   │   ret: dict[str, Any] = {"data": {}}                             
+
+     738 │   │   try:                                                           
+
+  ❱  739 │   │   │   ret = self._connection.cmd_query(                          
+
+     740 │   │   │   │   query,                                                 
+
+     741 │   │   │   │   self._sequence_counter,                                
+
+     742 │   │   │   │   self._request_id,                                      
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/connec  
+
+  tion.py:1923 in cmd_query                                                     
+
+                                                                                
+
+    1920 │   │                                                                  
+
+    1921 │   │   url_parameters = {REQUEST_ID: request_id}                      
+
+    1922 │   │                                                                  
+
+  ❱ 1923 │   │   ret = self.rest.request(                                       
+
+    1924 │   │   │   "/queries/v1/query-request?" + urlencode(url_parameters),  
+
+    1925 │   │   │   data,                                                      
+
+    1926 │   │   │   client=client,                                             
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:487 in request                                                           
+
+                                                                                
+
+     484 │   │   if self._connection.service_name:                              
+
+     485 │   │   │   headers[HTTP_HEADER_SERVICE_NAME] = self._connection.serv  
+
+     486 │   │   if method == "post":                                           
+
+  ❱  487 │   │   │   return self._post_request(                                 
+
+     488 │   │   │   │   url,                                                   
+
+     489 │   │   │   │   headers,                                               
+
+     490 │   │   │   │   json.dumps(body, cls=SnowflakeRestfulJsonEncoder),     
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:782 in _post_request                                                     
+
+                                                                                
+
+     779 │   │   │   │   ret = self._renew_session()                            
+
+     780 │   │   │   except ReauthenticationRequest as ex:                      
+
+     781 │   │   │   │   if self._connection._authenticator != EXTERNAL_BROWSE  
+
+  ❱  782 │   │   │   │   │   raise ex.cause                                     
+
+     783 │   │   │   │   ret = self._connection._reauthenticate()               
+
+     784 │   │   │   logger.debug(                                              
+
+     785 │   │   │   │   "ret[code] = {code} after renew_session".format(       
+
+────────────────────────────────────────────────────────────────────────────────
+
+ProgrammingError: 390114 (08001): Authentication token has expired.  The user 
+
+must authenticate again.
+
+Error when insert to database: 390114 (08001): Authentication token has expired.  The user must authenticate again.
+
+────────────────────── Traceback (most recent call last) ───────────────────────
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:779 in _post_request                                                     
+
+                                                                                
+
+     776 │   │   │   and self._connection._authenticator != PAT_WITH_EXTERNAL_  
+
+     777 │   │   ):                                                             
+
+     778 │   │   │   try:                                                       
+
+  ❱  779 │   │   │   │   ret = self._renew_session()                            
+
+     780 │   │   │   except ReauthenticationRequest as ex:                      
+
+     781 │   │   │   │   if self._connection._authenticator != EXTERNAL_BROWSE  
+
+     782 │   │   │   │   │   raise ex.cause                                     
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:536 in _renew_session                                                    
+
+                                                                                
+
+     533 │                                                                      
+
+     534 │   def _renew_session(self):                                          
+
+     535 │   │   """Renew a session and master token."""                        
+
+  ❱  536 │   │   return self._token_request(REQUEST_TYPE_RENEW)                 
+
+     537 │                                                                      
+
+     538 │   def _token_request(self, request_type):                            
+
+     539 │   │   logger.debug(                                                  
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:591 in _token_request                                                    
+
+                                                                                
+
+     588 │   │   │   │   MASTER_TOKEN_INVALD_GS_CODE,                           
+
+     589 │   │   │   │   BAD_REQUEST_GS_CODE,                                   
+
+     590 │   │   │   ):                                                         
+
+  ❱  591 │   │   │   │   raise ReauthenticationRequest(                         
+
+     592 │   │   │   │   │   ProgrammingError(                                  
+
+     593 │   │   │   │   │   │   msg=err,                                       
+
+     594 │   │   │   │   │   │   errno=int(errno),                              
+
+────────────────────────────────────────────────────────────────────────────────
+
+ReauthenticationRequest: 390114 (08001): Authentication token has expired.  The 
+
+user must authenticate again.
+
+
+During handling of the above exception, another exception occurred:
+
+
+────────────────────── Traceback (most recent call last) ───────────────────────
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/scriptru  
+
+  nner/exec_code.py:129 in exec_func_with_error_handling                        
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/scriptru  
+
+  nner/script_runner.py:689 in code_to_exec                                     
+
+                                                                                
+
+  /mount/src/football-dashboard/app.py:341 in <module>                          
+
+                                                                                
+
+    338 │   log_ip_to_bronze(user_ip, conn)                                     
+
+    339                                                                         
+
+    340                                                                         
+
+  ❱ 341 df_teams = run_query(f"""                                               
+
+    342 │   SELECT DISTINCT TEAM                                                
+
+    343 │   FROM FOOTBALL_DB.{DB_SCHEMA}.FCT_TEAM_ROLLING_FORM_LAST_5           
+
+    344 │   ORDER BY TEAM                                                       
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:281 in __call__                                                
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:326 in _get_or_create_cached_value                             
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:385 in _handle_cache_miss                                      
+
+                                                                                
+
+  /mount/src/football-dashboard/app.py:294 in run_query                         
+
+                                                                                
+
+    291 def run_query(sql: str) -> pd.DataFrame:                                
+
+    292 │   cur = conn.cursor()                                                 
+
+    293 │   try:                                                                
+
+  ❱ 294 │   │   cur.execute(sql)                                                
+
+    295 │   │   columns = [col[0] for col in cur.description]                   
+
+    296 │   │   return pd.DataFrame(cur.fetchall(), columns=columns)            
+
+    297 │   finally:                                                            
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/cursor  
+
+  .py:1033 in execute                                                           
+
+                                                                                
+
+    1030 │   │   │   )                                                          
+
+    1031 │   │   │   query = query1                                             
+
+    1032 │   │                                                                  
+
+  ❱ 1033 │   │   ret = self._execute_helper(query, **kwargs)                    
+
+    1034 │   │   self._sfqid = (                                                
+
+    1035 │   │   │   ret["data"]["queryId"]                                     
+
+    1036 │   │   │   if "data" in ret and "queryId" in ret["data"]              
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/cursor  
+
+  .py:739 in _execute_helper                                                    
+
+                                                                                
+
+     736 │   │   │   )                                                          
+
+     737 │   │   ret: dict[str, Any] = {"data": {}}                             
+
+     738 │   │   try:                                                           
+
+  ❱  739 │   │   │   ret = self._connection.cmd_query(                          
+
+     740 │   │   │   │   query,                                                 
+
+     741 │   │   │   │   self._sequence_counter,                                
+
+     742 │   │   │   │   self._request_id,                                      
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/connec  
+
+  tion.py:1923 in cmd_query                                                     
+
+                                                                                
+
+    1920 │   │                                                                  
+
+    1921 │   │   url_parameters = {REQUEST_ID: request_id}                      
+
+    1922 │   │                                                                  
+
+  ❱ 1923 │   │   ret = self.rest.request(                                       
+
+    1924 │   │   │   "/queries/v1/query-request?" + urlencode(url_parameters),  
+
+    1925 │   │   │   data,                                                      
+
+    1926 │   │   │   client=client,                                             
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:487 in request                                                           
+
+                                                                                
+
+     484 │   │   if self._connection.service_name:                              
+
+     485 │   │   │   headers[HTTP_HEADER_SERVICE_NAME] = self._connection.serv  
+
+     486 │   │   if method == "post":                                           
+
+  ❱  487 │   │   │   return self._post_request(                                 
+
+     488 │   │   │   │   url,                                                   
+
+     489 │   │   │   │   headers,                                               
+
+     490 │   │   │   │   json.dumps(body, cls=SnowflakeRestfulJsonEncoder),     
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:782 in _post_request                                                     
+
+                                                                                
+
+     779 │   │   │   │   ret = self._renew_session()                            
+
+     780 │   │   │   except ReauthenticationRequest as ex:                      
+
+     781 │   │   │   │   if self._connection._authenticator != EXTERNAL_BROWSE  
+
+  ❱  782 │   │   │   │   │   raise ex.cause                                     
+
+     783 │   │   │   │   ret = self._connection._reauthenticate()               
+
+     784 │   │   │   logger.debug(                                              
+
+     785 │   │   │   │   "ret[code] = {code} after renew_session".format(       
+
+────────────────────────────────────────────────────────────────────────────────
+
+ProgrammingError: 390114 (08001): Authentication token has expired.  The user 
+
+must authenticate again.
+
+Error when insert to database: 390114 (08001): Authentication token has expired.  The user must authenticate again.
+
+────────────────────── Traceback (most recent call last) ───────────────────────
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:779 in _post_request                                                     
+
+                                                                                
+
+     776 │   │   │   and self._connection._authenticator != PAT_WITH_EXTERNAL_  
+
+     777 │   │   ):                                                             
+
+     778 │   │   │   try:                                                       
+
+  ❱  779 │   │   │   │   ret = self._renew_session()                            
+
+     780 │   │   │   except ReauthenticationRequest as ex:                      
+
+     781 │   │   │   │   if self._connection._authenticator != EXTERNAL_BROWSE  
+
+     782 │   │   │   │   │   raise ex.cause                                     
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:536 in _renew_session                                                    
+
+                                                                                
+
+     533 │                                                                      
+
+     534 │   def _renew_session(self):                                          
+
+     535 │   │   """Renew a session and master token."""                        
+
+  ❱  536 │   │   return self._token_request(REQUEST_TYPE_RENEW)                 
+
+     537 │                                                                      
+
+     538 │   def _token_request(self, request_type):                            
+
+     539 │   │   logger.debug(                                                  
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:591 in _token_request                                                    
+
+                                                                                
+
+     588 │   │   │   │   MASTER_TOKEN_INVALD_GS_CODE,                           
+
+     589 │   │   │   │   BAD_REQUEST_GS_CODE,                                   
+
+     590 │   │   │   ):                                                         
+
+  ❱  591 │   │   │   │   raise ReauthenticationRequest(                         
+
+     592 │   │   │   │   │   ProgrammingError(                                  
+
+     593 │   │   │   │   │   │   msg=err,                                       
+
+     594 │   │   │   │   │   │   errno=int(errno),                              
+
+────────────────────────────────────────────────────────────────────────────────
+
+ReauthenticationRequest: 390114 (08001): Authentication token has expired.  The 
+
+user must authenticate again.
+
+
+During handling of the above exception, another exception occurred:
+
+
+────────────────────── Traceback (most recent call last) ───────────────────────
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/scriptru  
+
+  nner/exec_code.py:129 in exec_func_with_error_handling                        
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/scriptru  
+
+  nner/script_runner.py:689 in code_to_exec                                     
+
+                                                                                
+
+  /mount/src/football-dashboard/app.py:341 in <module>                          
+
+                                                                                
+
+    338 │   log_ip_to_bronze(user_ip, conn)                                     
+
+    339                                                                         
+
+    340                                                                         
+
+  ❱ 341 df_teams = run_query(f"""                                               
+
+    342 │   SELECT DISTINCT TEAM                                                
+
+    343 │   FROM FOOTBALL_DB.{DB_SCHEMA}.FCT_TEAM_ROLLING_FORM_LAST_5           
+
+    344 │   ORDER BY TEAM                                                       
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:281 in __call__                                                
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:326 in _get_or_create_cached_value                             
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:385 in _handle_cache_miss                                      
+
+                                                                                
+
+  /mount/src/football-dashboard/app.py:294 in run_query                         
+
+                                                                                
+
+    291 def run_query(sql: str) -> pd.DataFrame:                                
+
+    292 │   cur = conn.cursor()                                                 
+
+    293 │   try:                                                                
+
+  ❱ 294 │   │   cur.execute(sql)                                                
+
+    295 │   │   columns = [col[0] for col in cur.description]                   
+
+    296 │   │   return pd.DataFrame(cur.fetchall(), columns=columns)            
+
+    297 │   finally:                                                            
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/cursor  
+
+  .py:1033 in execute                                                           
+
+                                                                                
+
+    1030 │   │   │   )                                                          
+
+    1031 │   │   │   query = query1                                             
+
+    1032 │   │                                                                  
+
+  ❱ 1033 │   │   ret = self._execute_helper(query, **kwargs)                    
+
+    1034 │   │   self._sfqid = (                                                
+
+    1035 │   │   │   ret["data"]["queryId"]                                     
+
+    1036 │   │   │   if "data" in ret and "queryId" in ret["data"]              
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/cursor  
+
+  .py:739 in _execute_helper                                                    
+
+                                                                                
+
+     736 │   │   │   )                                                          
+
+     737 │   │   ret: dict[str, Any] = {"data": {}}                             
+
+     738 │   │   try:                                                           
+
+  ❱  739 │   │   │   ret = self._connection.cmd_query(                          
+
+     740 │   │   │   │   query,                                                 
+
+     741 │   │   │   │   self._sequence_counter,                                
+
+     742 │   │   │   │   self._request_id,                                      
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/connec  
+
+  tion.py:1923 in cmd_query                                                     
+
+                                                                                
+
+    1920 │   │                                                                  
+
+    1921 │   │   url_parameters = {REQUEST_ID: request_id}                      
+
+    1922 │   │                                                                  
+
+  ❱ 1923 │   │   ret = self.rest.request(                                       
+
+    1924 │   │   │   "/queries/v1/query-request?" + urlencode(url_parameters),  
+
+    1925 │   │   │   data,                                                      
+
+    1926 │   │   │   client=client,                                             
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:487 in request                                                           
+
+                                                                                
+
+     484 │   │   if self._connection.service_name:                              
+
+     485 │   │   │   headers[HTTP_HEADER_SERVICE_NAME] = self._connection.serv  
+
+     486 │   │   if method == "post":                                           
+
+  ❱  487 │   │   │   return self._post_request(                                 
+
+     488 │   │   │   │   url,                                                   
+
+     489 │   │   │   │   headers,                                               
+
+     490 │   │   │   │   json.dumps(body, cls=SnowflakeRestfulJsonEncoder),     
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:782 in _post_request                                                     
+
+                                                                                
+
+     779 │   │   │   │   ret = self._renew_session()                            
+
+     780 │   │   │   except ReauthenticationRequest as ex:                      
+
+     781 │   │   │   │   if self._connection._authenticator != EXTERNAL_BROWSE  
+
+  ❱  782 │   │   │   │   │   raise ex.cause                                     
+
+     783 │   │   │   │   ret = self._connection._reauthenticate()               
+
+     784 │   │   │   logger.debug(                                              
+
+     785 │   │   │   │   "ret[code] = {code} after renew_session".format(       
+
+────────────────────────────────────────────────────────────────────────────────
+
+ProgrammingError: 390114 (08001): Authentication token has expired.  The user 
+
+must authenticate again.
+
+Error when insert to database: 390114 (08001): Authentication token has expired.  The user must authenticate again.
+
+────────────────────── Traceback (most recent call last) ───────────────────────
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:779 in _post_request                                                     
+
+                                                                                
+
+     776 │   │   │   and self._connection._authenticator != PAT_WITH_EXTERNAL_  
+
+     777 │   │   ):                                                             
+
+     778 │   │   │   try:                                                       
+
+  ❱  779 │   │   │   │   ret = self._renew_session()                            
+
+     780 │   │   │   except ReauthenticationRequest as ex:                      
+
+     781 │   │   │   │   if self._connection._authenticator != EXTERNAL_BROWSE  
+
+     782 │   │   │   │   │   raise ex.cause                                     
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:536 in _renew_session                                                    
+
+                                                                                
+
+     533 │                                                                      
+
+     534 │   def _renew_session(self):                                          
+
+     535 │   │   """Renew a session and master token."""                        
+
+  ❱  536 │   │   return self._token_request(REQUEST_TYPE_RENEW)                 
+
+     537 │                                                                      
+
+     538 │   def _token_request(self, request_type):                            
+
+     539 │   │   logger.debug(                                                  
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:591 in _token_request                                                    
+
+                                                                                
+
+     588 │   │   │   │   MASTER_TOKEN_INVALD_GS_CODE,                           
+
+     589 │   │   │   │   BAD_REQUEST_GS_CODE,                                   
+
+     590 │   │   │   ):                                                         
+
+  ❱  591 │   │   │   │   raise ReauthenticationRequest(                         
+
+     592 │   │   │   │   │   ProgrammingError(                                  
+
+     593 │   │   │   │   │   │   msg=err,                                       
+
+     594 │   │   │   │   │   │   errno=int(errno),                              
+
+────────────────────────────────────────────────────────────────────────────────
+
+ReauthenticationRequest: 390114 (08001): Authentication token has expired.  The 
+
+user must authenticate again.
+
+
+During handling of the above exception, another exception occurred:
+
+
+────────────────────── Traceback (most recent call last) ───────────────────────
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/scriptru  
+
+  nner/exec_code.py:129 in exec_func_with_error_handling                        
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/scriptru  
+
+  nner/script_runner.py:689 in code_to_exec                                     
+
+                                                                                
+
+  /mount/src/football-dashboard/app.py:341 in <module>                          
+
+                                                                                
+
+    338 │   log_ip_to_bronze(user_ip, conn)                                     
+
+    339                                                                         
+
+    340                                                                         
+
+  ❱ 341 df_teams = run_query(f"""                                               
+
+    342 │   SELECT DISTINCT TEAM                                                
+
+    343 │   FROM FOOTBALL_DB.{DB_SCHEMA}.FCT_TEAM_ROLLING_FORM_LAST_5           
+
+    344 │   ORDER BY TEAM                                                       
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:281 in __call__                                                
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:326 in _get_or_create_cached_value                             
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/streamlit/runtime/caching/  
+
+  cache_utils.py:385 in _handle_cache_miss                                      
+
+                                                                                
+
+  /mount/src/football-dashboard/app.py:294 in run_query                         
+
+                                                                                
+
+    291 def run_query(sql: str) -> pd.DataFrame:                                
+
+    292 │   cur = conn.cursor()                                                 
+
+    293 │   try:                                                                
+
+  ❱ 294 │   │   cur.execute(sql)                                                
+
+    295 │   │   columns = [col[0] for col in cur.description]                   
+
+    296 │   │   return pd.DataFrame(cur.fetchall(), columns=columns)            
+
+    297 │   finally:                                                            
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/cursor  
+
+  .py:1033 in execute                                                           
+
+                                                                                
+
+    1030 │   │   │   )                                                          
+
+    1031 │   │   │   query = query1                                             
+
+    1032 │   │                                                                  
+
+  ❱ 1033 │   │   ret = self._execute_helper(query, **kwargs)                    
+
+    1034 │   │   self._sfqid = (                                                
+
+    1035 │   │   │   ret["data"]["queryId"]                                     
+
+    1036 │   │   │   if "data" in ret and "queryId" in ret["data"]              
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/cursor  
+
+  .py:739 in _execute_helper                                                    
+
+                                                                                
+
+     736 │   │   │   )                                                          
+
+     737 │   │   ret: dict[str, Any] = {"data": {}}                             
+
+     738 │   │   try:                                                           
+
+  ❱  739 │   │   │   ret = self._connection.cmd_query(                          
+
+     740 │   │   │   │   query,                                                 
+
+     741 │   │   │   │   self._sequence_counter,                                
+
+     742 │   │   │   │   self._request_id,                                      
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/connec  
+
+  tion.py:1923 in cmd_query                                                     
+
+                                                                                
+
+    1920 │   │                                                                  
+
+    1921 │   │   url_parameters = {REQUEST_ID: request_id}                      
+
+    1922 │   │                                                                  
+
+  ❱ 1923 │   │   ret = self.rest.request(                                       
+
+    1924 │   │   │   "/queries/v1/query-request?" + urlencode(url_parameters),  
+
+    1925 │   │   │   data,                                                      
+
+    1926 │   │   │   client=client,                                             
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:487 in request                                                           
+
+                                                                                
+
+     484 │   │   if self._connection.service_name:                              
+
+     485 │   │   │   headers[HTTP_HEADER_SERVICE_NAME] = self._connection.serv  
+
+     486 │   │   if method == "post":                                           
+
+  ❱  487 │   │   │   return self._post_request(                                 
+
+     488 │   │   │   │   url,                                                   
+
+     489 │   │   │   │   headers,                                               
+
+     490 │   │   │   │   json.dumps(body, cls=SnowflakeRestfulJsonEncoder),     
+
+                                                                                
+
+  /home/adminuser/venv/lib/python3.12/site-packages/snowflake/connector/networ  
+
+  k.py:782 in _post_request                                                     
+
+                                                                                
+
+     779 │   │   │   │   ret = self._renew_session()                            
+
+     780 │   │   │   except ReauthenticationRequest as ex:                      
+
+     781 │   │   │   │   if self._connection._authenticator != EXTERNAL_BROWSE  
+
+  ❱  782 │   │   │   │   │   raise ex.cause                                     
+
+     783 │   │   │   │   ret = self._connection._reauthenticate()               
+
+     784 │   │   │   logger.debug(                                              
+
+     785 │   │   │   │   "ret[code] = {code} after renew_session".format(       
+
+────────────────────────────────────────────────────────────────────────────────
+
+ProgrammingError: 390114 (08001): Authentication token has expired.  The user 
+
+must authenticate again.
